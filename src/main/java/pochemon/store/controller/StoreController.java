@@ -11,7 +11,7 @@ import pochemon.store.service.StoreService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stores")
+@RequestMapping("/api/stores")
 @CrossOrigin
 public class StoreController {
 
