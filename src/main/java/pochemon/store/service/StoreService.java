@@ -22,18 +22,21 @@ import pochemon.enums.Action;
 @Service
 public class StoreService {
 
-	@Autowired
-	UserWebService userWebService;
+	final UserWebService userWebService;
 
-	@Autowired
-	CardWebService cardWebService;
+	final CardWebService cardWebService;
 
-	@Autowired
-	StoreTransactionRepository storeTransactionRepository;
-	
-	@Autowired
-	StoreOrderRepository storeOrderRepository;
-	
+	final StoreTransactionRepository storeTransactionRepository;
+
+	final StoreOrderRepository storeOrderRepository;
+
+	public StoreService(StoreOrderRepository storeOrderRepository, StoreTransactionRepository storeTransactionRepository) {
+		this.storeOrderRepository = storeOrderRepository;
+		this.userWebService = new UserWebService();
+		this.cardWebService = new CardWebService();
+		this.storeTransactionRepository = storeTransactionRepository;
+	}
+
 	public List<StoreTransaction> getAllStoreTransactions() {
 		return storeTransactionRepository.findAll();
 	}
