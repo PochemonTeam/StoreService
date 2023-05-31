@@ -1,31 +1,25 @@
 package pochemon.store.service;
 
 import java.time.Instant;
+
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.entity.Card;
-import com.entity.StoreOrder;
-import com.entity.StoreTransaction;
-import com.entity.User;
-import com.enums.Action;
-import com.repository.StoreOrderRepository;
-import com.repository.StoreTransactionRepository;
+import pochemon.store.repository.StoreTransactionRepository;
+import pochemon.store.repository.StoreOrderRepository;
+
+import pochemon.store.entity.StoreTransaction;
+import pochemon.store.entity.StoreOrder;
+import pochemon.enums.Action;
 
 @Service
 public class StoreService {
 
 	@Autowired
 	StoreTransactionRepository storeTransactionRepository;
-
-	@Autowired
-	CardService cardService;
-
-	@Autowired
-	UserService userService;
 	
 	@Autowired
 	StoreOrderRepository storeOrderRepository;
@@ -43,6 +37,9 @@ public class StoreService {
 	}
 	
 	public Boolean buyCard(StoreOrder storeOrder) {
+		//TO DO REPRENDRE AVEC RPC ET LA LIB
+		
+		/*
 		// Récupération de la carte à acheter
 		StoreOrder storeOrderToBuy = storeOrderRepository.findByCardId(storeOrder.getCard().getId());
 
@@ -62,23 +59,24 @@ public class StoreService {
 			StoreTransaction buyerStoreTransaction = createStoreTransaction(storeOrder.getUser(), cardToSell, Action.BUY);
 
 			cardToSell.setUser(buyerUser);
-			cardService.addCard(cardToSell);
+			//cardService.addCard(cardToSell);
 
 			storeTransactionRepository.save(sellerStoreTransaction);
 			storeTransactionRepository.save(buyerStoreTransaction);
 
 			storeOrderRepository.delete(storeOrderToBuy);
 		}
+		return false;*/
 		return false;
 		
 	}
 	
-	private StoreTransaction createStoreTransaction(User user, Card card, Action action) {
+	private StoreTransaction createStoreTransaction(Integer userId, Integer cardId, Action action) {
 		StoreTransaction newStoreTransaction = new StoreTransaction();
 		
-		newStoreTransaction.setCard(card);
+		newStoreTransaction.setCardId(cardId);
 		newStoreTransaction.setTimeSt(Date.from(Instant.now()));
-		newStoreTransaction.setUser(user);
+		newStoreTransaction.setUserId(userId);
 		newStoreTransaction.setAction(action);
 		
 		return newStoreTransaction;

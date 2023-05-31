@@ -1,6 +1,9 @@
 package pochemon.store.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,14 +15,10 @@ public class StoreOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
+	
+	Integer userId;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	User user;
-
-	@ManyToOne
-	@JoinColumn(name = "card_id")
-	Card card;
+	Integer cardId;
 	
 	Float price;
 }

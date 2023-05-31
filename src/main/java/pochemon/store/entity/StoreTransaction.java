@@ -1,8 +1,8 @@
 package pochemon.store.entity;
 
 import java.util.Date;
+import pochemon.enums.Action;
 
-import com.enums.Action;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,13 +17,9 @@ public class StoreTransaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	User user;
+	Integer userId;
 
-	@ManyToOne
-	@JoinColumn(name = "card_id")
-	Card card;
+	Integer cardId;
 
 	Action action;
 	
