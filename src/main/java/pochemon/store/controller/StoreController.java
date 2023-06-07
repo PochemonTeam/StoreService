@@ -30,7 +30,7 @@ public class StoreController {
     }
 
     @PostMapping("/buy")
-    public boolean buyCard(@RequestBody StoreOrderDTO storeOrderDTO) {
+    public Boolean buyCard(@RequestBody StoreOrderDTO storeOrderDTO) {
         return storeService.buyCard(storeOrderMapper.toStoreOrder(storeOrderDTO));
     }
 
